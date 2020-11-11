@@ -1,0 +1,130 @@
+body{
+    margin: 0;
+    background-image: url(backgroundimage.jpeg)
+}
+header{
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes headline{
+        50% {
+           background: radial-gradient(circle, red 5%, transparent 40%), rgb(7, 7, 2);
+        }
+}
+.headline{
+    font-size: 50px;
+    margin-top: 150px;
+    color: oldlace;
+}
+
+main{
+    display: flex;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: fit-content;
+}
+
+
+.kotakborder{
+    width: 40%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+.kotak{
+    width: 100%;
+    
+    
+}
+.kotakatas, .kotaktengah, .kotakbawah{
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    min-width: 100%;
+    
+    
+    
+}
+
+.kotak1, .kotak2, .kotak3, .kotak4, .kotak5, .kotak6, .kotak7, .kotak8, .kotak9{
+    border: 1px solid white;
+    font-size: 70px;  
+    display: inline-block;
+    width: 70px;
+    height: 85px;
+    color: lightpink;
+    background-color: lightpink;
+    
+}
+
+.playerOne{
+    background-color: thistle;
+}
+
+.player1Name{
+    background-color: lightyellow;
+    
+}
+
+.playerTwo{
+    background-color: lightsteelblue;
+}
+
+.player2Name{
+    background-color: linen;
+}
+
+
+.playerOne, .playerTwo{
+    border: 1px solid lightgreen;
+    margin: 10px;
+    padding: 20px;
+    width: 30%;
+}
+
+.deco1, .deco2, .player1Name, .player2Name{
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.kotakScore1, .kotakScore2{
+    display: flex;
+    justify-content: center;
+}
+
+footer{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+}
+.restart, .refresh, .turnplayer{
+    font-size: 2rem;
+}
+
+.turnplayer{
+    display: flex;
+    justify-content: center;
+    color: snow;
+    /* animation: headline .5s infinite; */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.refresh, .restart{
+    background-color: skyblue;
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+    
+}
