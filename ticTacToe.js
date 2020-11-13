@@ -19,16 +19,28 @@ var scorePlayer2 = document.querySelector(".scoreamount2")
 //Define var for playerTurn
 var playerTurn = document.querySelector(".turnplayer")
 
-// Define variable for Player name
+//Define variable that take Player Name input
+
+var enterPlayer1 = document.querySelectorAll("button")[0] //enter button player 1
+var enterPlayer2 = document.querySelectorAll("button")[1] //enter button player 2
+var inputPlayer1 = document.querySelectorAll("input")[0] //player1 name box
+var inputPlayer2 = document.querySelectorAll("input")[1] //player2 name box
+var inputName1 = inputPlayer1.value  //name that was input-ted for player 1
+var inputName2 = inputPlayer2.value  //name that was input-ted for player 2
+
+
+// Define variable for Player name 
 var player1Name = document.querySelector(".namaplayer1")
 var player2Name = document.querySelector(".namaplayer2")
 
-player1Name.textContent = prompt("Write your name please for Player 1")
-player2Name.textContent = prompt("Write your name please for Player 2")
+
+// not gonna use prompt since it freezes the browser
+// player1Name.textContent = prompt("Write your name please for Player 1")
+// player2Name.textContent = prompt("Write your name please for Player 2")
 
 
 // Need some kind of counter to differentiate players
-var turnCounter = 0
+var turnCounter = Math.floor(Math.random()*2) //randomize who starts first
 function turnCount(){
     turnCounter = 0
     var n = 0
@@ -39,13 +51,39 @@ function turnCount(){
     return turnCounter
 }
 
-//Start of game part //Defining player turn at start
-playerTurn.textContent = turnCounter
-if(playerTurn.textContent == 0){
+//Naming the players
+
+enterPlayer1.addEventListener("click",function(){
+
+    player1Name.textContent = document.querySelectorAll("input")[0].value
     playerTurn.textContent = player1Name.textContent +"'s"+ " TURN"
-}else {
+    playerTurn.textContent = turnCounter
+    if(turnCounter == 0){
+        playerTurn.textContent = player1Name.textContent +"'s"+ " TURN"
+    }else {
+        playerTurn.textContent = player2Name.textContent + "'s" + " TURN"
+    }
+})
+enterPlayer2.addEventListener("click",function(){
+    player2Name.textContent = document.querySelectorAll("input")[1].value;
     playerTurn.textContent = player2Name.textContent + "'s" + " TURN"
-}
+    playerTurn.textContent = turnCounter
+    if(turnCounter == 0){
+        playerTurn.textContent = player1Name.textContent +"'s"+ " TURN"
+    }else {
+        playerTurn.textContent = player2Name.textContent + "'s" + " TURN"
+    }
+})
+
+
+//Start of game part //Defining player turn at start
+
+// playerTurn.textContent = turnCounter
+// if(playerTurn.textContent == 0){
+//     playerTurn.textContent = player1Name.textContent +"'s"+ " TURN"
+// }else {
+//     playerTurn.textContent = player2Name.textContent + "'s" + " TURN"
+// }
 
 
 // Clicking events
@@ -55,8 +93,8 @@ box1Clicked.addEventListener("click",function(){
             if (box1Clicked.textContent != "X" && box2Clicked.textContent == "X" && box3Clicked.textContent == "X"){
                 box1Clicked.textContent = "X"
                 box1Clicked.style.color = "black"
-                turnCount()
-                alert(player1Name.textContent + " Wins")
+                turnCount() // this is basically turnCounter = 1
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -67,7 +105,7 @@ box1Clicked.addEventListener("click",function(){
                 box1Clicked.textContent = "X"
                 box1Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -78,7 +116,7 @@ box1Clicked.addEventListener("click",function(){
                 box1Clicked.textContent = "X"
                 box1Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -89,7 +127,7 @@ box1Clicked.addEventListener("click",function(){
                 console.log("X")
                 box1Clicked.textContent = "X"
                 box1Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{ //only if empty
                 box1Clicked.textContent = "X"
                 box1Clicked.style.color = "black"
@@ -104,7 +142,7 @@ box1Clicked.addEventListener("click",function(){
             if (box1Clicked.textContent != "O" && box2Clicked.textContent == "O"  && box3Clicked.textContent == "O"){
                 box1Clicked.textContent = "O"
                 box1Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -114,7 +152,7 @@ box1Clicked.addEventListener("click",function(){
             }else if (box1Clicked.textContent != "O" && box4Clicked.textContent == "O" && box7Clicked.textContent == "O"){
                 box1Clicked.textContent = "O"
                 box1Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -124,7 +162,7 @@ box1Clicked.addEventListener("click",function(){
             }else if (box1Clicked.textContent != "O" && box5Clicked.textContent == "O" && box9Clicked.textContent == "O"){
                 box1Clicked.textContent = "O"
                 box1Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -135,7 +173,7 @@ box1Clicked.addEventListener("click",function(){
                 console.log("O")
                 box1Clicked.textContent = "O"
                 box1Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
             box1Clicked.textContent = "O"
             box1Clicked.style.color = "black"
@@ -153,7 +191,7 @@ box2Clicked.addEventListener("click",function(){
                 box2Clicked.textContent = "X"
                 box2Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -164,7 +202,7 @@ box2Clicked.addEventListener("click",function(){
                 box2Clicked.textContent = "X"
                 box2Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -175,7 +213,7 @@ box2Clicked.addEventListener("click",function(){
                 console.log("X")
                 box2Clicked.textContent = "X"
                 box2Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box2Clicked.textContent = "X"
                 box2Clicked.style.color = "black"
@@ -190,7 +228,7 @@ box2Clicked.addEventListener("click",function(){
                 box2Clicked.textContent = "O"
                 box2Clicked.style.color = "black"
                 turnCounter = 0;
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -201,7 +239,7 @@ box2Clicked.addEventListener("click",function(){
                 box2Clicked.textContent = "O"
                 box2Clicked.style.color = "black"
                 turnCounter = 0;
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -212,7 +250,7 @@ box2Clicked.addEventListener("click",function(){
                 console.log("O")
                 box2Clicked.textContent = "O"
                 box2Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box2Clicked.textContent = "O"
                 box2Clicked.style.color = "black"
@@ -230,7 +268,7 @@ box3Clicked.addEventListener("click",function(){
                 box3Clicked.textContent = "X"
                 box3Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -241,7 +279,7 @@ box3Clicked.addEventListener("click",function(){
                 box3Clicked.textContent = "X"
                 box3Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -252,7 +290,7 @@ box3Clicked.addEventListener("click",function(){
                 box3Clicked.textContent = "X"
                 box3Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -263,7 +301,7 @@ box3Clicked.addEventListener("click",function(){
                 console.log("X")
                 box3Clicked.textContent = "X"
                 box3Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box3Clicked.textContent = "X"
                 box3Clicked.style.color = "black"
@@ -279,7 +317,7 @@ box3Clicked.addEventListener("click",function(){
                 box3Clicked.textContent = "O"
                 box3Clicked.style.color = "black"
                 turnCounter = 0;
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -290,7 +328,7 @@ box3Clicked.addEventListener("click",function(){
                 box3Clicked.textContent = "O"
                 box3Clicked.style.color = "black"
                 turnCounter = 0;
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -301,7 +339,7 @@ box3Clicked.addEventListener("click",function(){
                 box3Clicked.textContent = "O"
                 box3Clicked.style.color = "black"
                 turnCounter = 0;
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -312,7 +350,7 @@ box3Clicked.addEventListener("click",function(){
                 console.log("O")
                 box3Clicked.textContent = "O"
                 box3Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box3Clicked.textContent = "O"
                 box3Clicked.style.color = "black"
@@ -330,7 +368,7 @@ box4Clicked.addEventListener("click",function(){
                 box4Clicked.textContent = "X"
                 box4Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -341,7 +379,7 @@ box4Clicked.addEventListener("click",function(){
                 box4Clicked.textContent = "X"
                 box4Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -352,7 +390,7 @@ box4Clicked.addEventListener("click",function(){
                 console.log("X")
                 box4Clicked.textContent = "X"
                 box4Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box4Clicked.textContent = "X"
                 box4Clicked.style.color = "black"
@@ -367,7 +405,7 @@ box4Clicked.addEventListener("click",function(){
                 box4Clicked.textContent = "O"
                 box4Clicked.style.color = "black"
                 turnCounter = 0;
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -378,7 +416,7 @@ box4Clicked.addEventListener("click",function(){
                 box4Clicked.textContent = "O"
                 box4Clicked.style.color = "black"
                 turnCounter = 0;
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -389,7 +427,7 @@ box4Clicked.addEventListener("click",function(){
                 console.log("O")
                 box4Clicked.textContent = "O"
                 box4Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box4Clicked.textContent = "O"
                 box4Clicked.style.color = "black"
@@ -407,7 +445,7 @@ box5Clicked.addEventListener("click",function(){
                 box5Clicked.textContent = "X"
                 box5Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -418,7 +456,7 @@ box5Clicked.addEventListener("click",function(){
                 box5Clicked.textContent = "X"
                 box5Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -429,7 +467,7 @@ box5Clicked.addEventListener("click",function(){
                 console.log("X")
                 box5Clicked.textContent = "X"
                 box5Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box5Clicked.textContent = "X"
                 box5Clicked.style.color = "black"
@@ -443,7 +481,7 @@ box5Clicked.addEventListener("click",function(){
             if(box5Clicked.textContent != "O" && box2Clicked.textContent == "O" && box8Clicked.textContent == "O"){
                 box5Clicked.textContent = "X"
                 box5Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -453,7 +491,7 @@ box5Clicked.addEventListener("click",function(){
             }else if(box5Clicked.textContent != "O" && box4Clicked.textContent == "O" && box6Clicked.textContent == "O"){
                 box5Clicked.textContent = "O"
                 box5Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -464,7 +502,7 @@ box5Clicked.addEventListener("click",function(){
                 console.log("O")
                 box5Clicked.textContent = "O"
                 box5Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box5Clicked.textContent = "O"
                 box5Clicked.style.color = "black"
@@ -482,7 +520,7 @@ box6Clicked.addEventListener("click",function(){
                 box6Clicked.textContent = "X"
                 box6Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -493,7 +531,7 @@ box6Clicked.addEventListener("click",function(){
                 box6Clicked.textContent = "X"
                 box6Clicked.style.color = "black"
                 turnCount()
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -504,7 +542,7 @@ box6Clicked.addEventListener("click",function(){
                 console.log("X")
                 box6Clicked.textContent = "X"
                 box6Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box6Clicked.textContent = "X"
                 box6Clicked.style.color = "black"
@@ -519,7 +557,7 @@ box6Clicked.addEventListener("click",function(){
             if(box6Clicked.textContent != "O" && box3Clicked.textContent == "O" && box9Clicked.textContent == "O"){
                 box6Clicked.textContent = "O"
                 box6Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -529,7 +567,7 @@ box6Clicked.addEventListener("click",function(){
             }else if(box6Clicked.textContent != "O" && box4Clicked.textContent == "O" && box5Clicked.textContent == "O"){
                 box6Clicked.textContent = "O"
                 box6Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -540,7 +578,7 @@ box6Clicked.addEventListener("click",function(){
                 console.log("O")
                 box6Clicked.textContent = "O"
                 box6Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box6Clicked.textContent = "O"
                 box6Clicked.style.color = "black"
@@ -557,7 +595,7 @@ box7Clicked.addEventListener("click",function(){
             if(box7Clicked.textContent != "X" && box1Clicked.textContent == "X" && box4Clicked.textContent == "X"){
                 box7Clicked.textContent = "X"
                 box7Clicked.style.color = "black"
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -567,7 +605,7 @@ box7Clicked.addEventListener("click",function(){
             }else if(box7Clicked.textContent != "X" && box3Clicked.textContent == "X" && box5Clicked.textContent == "X"){
                 box7Clicked.textContent = "X"
                 box7Clicked.style.color = "black"
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -577,7 +615,7 @@ box7Clicked.addEventListener("click",function(){
             }else if(box7Clicked.textContent != "X" && box8Clicked.textContent == "X" && box9Clicked.textContent == "X"){
                 box7Clicked.textContent = "X"
                 box7Clicked.style.color = "black"
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -588,7 +626,7 @@ box7Clicked.addEventListener("click",function(){
                 console.log("X")
                 box7Clicked.textContent = "X"
                 box7Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box7Clicked.textContent = "X"
                 box7Clicked.style.color = "black"
@@ -603,7 +641,7 @@ box7Clicked.addEventListener("click",function(){
             if(box7Clicked.textContent != "O" && box1Clicked.textContent == "O" && box4Clicked.textContent == "O"){
                 box7Clicked.textContent = "O"
                 box7Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -613,7 +651,7 @@ box7Clicked.addEventListener("click",function(){
             }else if(box7Clicked.textContent != "O" && box3Clicked.textContent == "O" && box5Clicked.textContent == "O"){
                 box7Clicked.textContent = "O"
                 box7Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -623,7 +661,7 @@ box7Clicked.addEventListener("click",function(){
             }else if(box7Clicked.textContent != "O" && box8Clicked.textContent == "O" && box9Clicked.textContent == "O"){
                 box7Clicked.textContent = "O"
                 box7Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -634,7 +672,7 @@ box7Clicked.addEventListener("click",function(){
                 console.log("O")
                 box7Clicked.textContent = "O"
                 box7Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else {
                 box7Clicked.textContent = "O"
                 box7Clicked.style.color = "black"
@@ -651,7 +689,7 @@ box8Clicked.addEventListener("click",function(){
             if(box8Clicked.textContent != "X" && box2Clicked.textContent == "X" && box5Clicked.textContent == "X"){
                 box8Clicked.textContent = "X"
                 box8Clicked.style.color = "black"
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -661,7 +699,7 @@ box8Clicked.addEventListener("click",function(){
             }else if(box8Clicked.textContent != "X" && box7Clicked.textContent == "X" && box9Clicked.textContent == "X"){
                 box8Clicked.textContent = "X"
                 box8Clicked.style.color = "black"
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -672,7 +710,7 @@ box8Clicked.addEventListener("click",function(){
                 console.log("X")
                 box8Clicked.textContent = "X"
                 box8Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box8Clicked.textContent = "X"
                 box8Clicked.style.color = "black"
@@ -686,7 +724,7 @@ box8Clicked.addEventListener("click",function(){
             if(box8Clicked.textContent != "O" && box2Clicked.textContent == "O" && box5Clicked.textContent == "O"){
                 box8Clicked.textContent = "O"
                 box8Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -696,7 +734,7 @@ box8Clicked.addEventListener("click",function(){
             }else if(box8Clicked.textContent != "O" && box7Clicked.textContent == "O" && box9Clicked.textContent == "O"){
                 box8Clicked.textContent = "O"
                 box8Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -707,7 +745,7 @@ box8Clicked.addEventListener("click",function(){
                 console.log("O")
                 box8Clicked.textContent = "O"
                 box8Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box8Clicked.textContent = "O"
                 box8Clicked.style.color = "black"
@@ -724,7 +762,7 @@ box9Clicked.addEventListener("click",function(){
             if(box9Clicked.textContent != "X" && box3Clicked.textContent == "X" && box6Clicked.textContent == "X"){
                 box9Clicked.textContent = "X"
                 box9Clicked.style.color = "black"
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -734,7 +772,7 @@ box9Clicked.addEventListener("click",function(){
             }else if(box9Clicked.textContent != "X" && box1Clicked.textContent == "X" && box5Clicked.textContent == "X"){
                 box9Clicked.textContent = "X"
                 box9Clicked.style.color = "black"
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -744,7 +782,7 @@ box9Clicked.addEventListener("click",function(){
             }else if(box9Clicked.textContent != "X" && box7Clicked.textContent == "X" && box8Clicked.textContent == "X"){
                 box9Clicked.textContent = "X"
                 box9Clicked.style.color = "black"
-                alert(player1Name.textContent + " Wins")
+                playerTurn.textContent = player1Name.textContent + " Wins"
                 var player1ScoreAmount = document.querySelector(".scoreamount1")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -755,7 +793,7 @@ box9Clicked.addEventListener("click",function(){
                 console.log("X")
                 box9Clicked.textContent = "X"
                 box9Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box9Clicked.textContent = "X"
                 box9Clicked.style.color = "black"
@@ -769,7 +807,7 @@ box9Clicked.addEventListener("click",function(){
             if(box9Clicked.textContent != "O" && box3Clicked.textContent == "O" && box6Clicked.textContent == "O"){
                 box9Clicked.textContent = "O"
                 box9Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -779,7 +817,7 @@ box9Clicked.addEventListener("click",function(){
             }else if(box9Clicked.textContent != "O" && box1Clicked.textContent == "O" && box5Clicked.textContent == "O"){
                 box9Clicked.textContent = "O"
                 box9Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -789,7 +827,7 @@ box9Clicked.addEventListener("click",function(){
             }else if(box9Clicked.textContent != "O" && box7Clicked.textContent == "O" && box8Clicked.textContent == "O"){
                 box9Clicked.textContent = "O"
                 box9Clicked.style.color = "black"
-                alert(player2Name.textContent + " Wins")
+                playerTurn.textContent = player2Name.textContent + " Wins"
                 var player2ScoreAmount = document.querySelector(".scoreamount2")
                 var newLoggedAmount = document.createElement("p")
                 newLoggedAmount.textContent = "W"
@@ -800,7 +838,7 @@ box9Clicked.addEventListener("click",function(){
                 console.log("O")
                 box9Clicked.textContent = "O"
                 box9Clicked.style.color = "black"
-                alert("Draw game");
+                playerTurn.textContent = "Draw game please hit restart board to play a new game"
             }else{
                 box9Clicked.textContent = "O"
                 box9Clicked.style.color = "black"
