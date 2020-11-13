@@ -1,3 +1,4 @@
+# Tic-Tac-Toe
 Hi to everyone who is reading this. 
 I am Syafiq. Prior before writing this, i have no experience or knowledge with html, css or javascript. 
 This is my first project at making a tic-tac-toe game using HTML,CSS and Javascript based on what i learnt so far for the past 2 weeks.
