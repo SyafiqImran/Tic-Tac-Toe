@@ -4,7 +4,7 @@ This is my first project at making a tic-tac-toe game using HTML,CSS and Javascr
 I have created 2 version of the game as i intend to improve my code bit by bit as to my knowledge.
 Please share any feedback on how i could make it better. Thank you so much for your time.
 
-
+Play my game here - https://syafiqimran.github.io/Tic-Tac-Toe/
 
 
 //Approach Taken..
